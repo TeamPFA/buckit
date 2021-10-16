@@ -13,6 +13,7 @@ app.use(express.urlencoded({ extended: true }));
 // Routes directory for all routing
 // const testRouter = require('./routes/api)
 // app.use('/api', testRouter);
+// Testing endpoint
 app.use('/api', (req, res) => res.status(200).send('BUCKIT BACK-END!!'));
 
 // Local error handler

@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-
-import styles from '../sass/styles.scss';
+// Module imports
+import 'jquery';
+import 'popper.js';
+// Directory imports
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '../sass/styles.scss';
 
 const App = () => {
   return (
@@ -13,3 +17,14 @@ ReactDOM.render(
   <App />,
   document.getElementById('root')
 );
+
+
+
+
+/*
+<-------- Potential Child Components --------->
+Header.js
+SideCard.js
+Post.js
+
+*/
