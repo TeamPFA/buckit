@@ -1,30 +1,54 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
-// Module imports
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+
+// Modules
 import 'jquery';
 import 'popper.js';
-// Directory imports
+
+// Directories
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../sass/styles.scss';
 
+// Components
+import Login from './Login.jsx';
+import Signup from './Signup.jsx';
+
 const App = () => {
   return (
-    <h1>WE ARE BUCKIT</h1>
-  )
+    <Router>
+      <Switch>
+        <Route path="/signup">
+          <Signup />
+        </Route>
+        <Route path="/">
+          <Login />
+        </Route>
+      </Switch>
+    </Router>
+  );
 };
 
-ReactDOM.render(
-  <App />,
-  document.getElementById('root')
-);
-
-
-
+ReactDOM.render(<App />, document.getElementById('root'));
 
 /*
 <-------- Potential Child Components --------->
-Header.js
-SideCard.js
-Post.js
+
+
+Login.jsx
+Signup.jsx
+
+Dashboard.jsx
+
+Home.jsx
+Header.jsx --> navbar
+SideCard.jsx
+
+*/
+
+/*
+Added bootstrap CDN to index.html. 
+Imported React-router and instead react router
+Added Login component & signup component and have the APP component set up to route to either child components depending on the route path.
 
 */
