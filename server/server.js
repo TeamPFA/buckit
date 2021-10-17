@@ -7,6 +7,7 @@ const apiController = require('./controller/apiController.js')
 // Required middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static(__dirname + '/public'));
 
 // Routes directory for all routing
 // const testRouter = require('./routes/api)
