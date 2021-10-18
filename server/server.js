@@ -26,3 +26,12 @@ app.use((err, req, res, next) => res.status(500).send('500: INTERAL SERVER ERROR
 app.listen(PORT, () => console.log(`Server is running on localhost:${PORT}`));
 
 module.exports = app;
+
+
+/*
+* ! sd
+* ? ?asda
+* ?
+* ! asfafa
+* TODO: 
+*/
