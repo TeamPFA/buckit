@@ -21,16 +21,10 @@ app.get('/', (req, res) => {
 app.use('/api', apiRouter); 
 
 // Local error handler
-app.use('*', (req, res) => res.status(404).send('404: PAGE DOES NOT EXIST'));
+app.use((req, res) => res.status(404).send('404: PAGE DOES NOT EXIST'));
 
 // Global error handler
-app.use((err, req, res, next) => {
-  const defaultError = {
-    log: 'Error handler caught middleware error'
-  }
-
-  return err;
-})
+app.use((err, req, res, next) => res.status(500));
 
 app.listen(PORT, () => console.log(`Server is running on localhost:${PORT}`));;
 
