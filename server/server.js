@@ -23,3 +23,12 @@ app.use((err, req, res, next) => res.status(500).json(err));
 app.listen(PORT, () => console.log(`Server is running on localhost:${PORT}`));;
 
 module.exports = app;
+
+
+/*
+* ! sd
+* ? ?asda
+* ?
+* ! asfafa
+* TODO: 
+*/
