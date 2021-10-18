@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, NavLink, Link } from 'react-router-dom';
 
 // Modules
 import 'jquery';
@@ -11,19 +11,17 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../sass/styles.scss';
 
 // Components
-import Login from './Login.jsx';
-import Signup from './Signup.jsx';
+import Login from './Login';
+import Signup from './Signup';
+import HomeContainer from '../containers/HomeContainer';
 
 const App = () => {
   return (
     <Router>
-      <Switch>
-        <Route path="/signup">
-          <Signup />
-        </Route>
-        <Route path="/">
-          <Login />
-        </Route>
+      <Switch> 
+        <Route path="/signup" component={Signup}/>
+        <Route path="/home" component={HomeContainer}/>
+        <Route path="/" component={Login}/>
       </Switch>
     </Router>
   );
@@ -33,6 +31,13 @@ ReactDOM.render(<App />, document.getElementById('root'));
 
 /*
 <-------- Potential Child Components --------->
+
+|— App
+...|— Signup
+...|— Login
+.. |— HomeContainer
+.....|— Dashboard
+.......|— Buckit
 
 
 Login.jsx

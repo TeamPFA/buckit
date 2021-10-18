@@ -1,10 +1,12 @@
 {
-  "extends": ["eslint:recommended", "prettier"],
+  "extends": ["airbnb", "eslint:recommended", "prettier/react", "prettier"],
   "rules": {
     "indent": ["error", 4],
-    "linebreak-style": ["error", "unix"],
+    "linebreak-style": ["error", "windows"],
     "quotes": ["error", "double"],
-    "semi": ["error", "always"]
+    "semi": ["error", "always"],
+    "object-curly-newline": 0,
+    "no-unexpected-multiline": "error"
   },
   "parser": "babel-eslint",
   "parserOptions": {
