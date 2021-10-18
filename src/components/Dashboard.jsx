@@ -10,20 +10,20 @@ import Separator from './Separator';
 
 
 const Dashboard = () => {
-    const [showBuckit, setShowBuckit] = useState(false)
+    const [showBuckit, setShowBuckit] = useState([])
     return (
         <Container fluid className="dashboard border rounded border-dark">
                 <Navbar collapseOnSelect className="fixed-top" bg="dark" variant="dark">
                     <Container>
-                    <Navbar.Brand href="#home">Buckit</Navbar.Brand>
+                    <Navbar.Brand href="/home">Buckit</Navbar.Brand>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="me-auto">
-                        <Button variant="secondary" onClick={()=> setShowBuckit(true)}>Create Buckitlist</Button>
+                        <Button variant="secondary" onClick={()=> setShowBuckit(true)}>Create Buckit</Button>
                         </Nav>
                     </Navbar.Collapse>
                     </Container>
-                </Navbar>
+                </Navbar>             
                 {showBuckit && <Separator />}
                 </Container>
     );
