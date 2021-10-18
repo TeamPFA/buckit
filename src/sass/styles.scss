@@ -21,19 +21,30 @@
     box-shadow:3px 3px 4px rgba(0,0,0,0.2);
   }
 
-  .form{
-    
-  }
-
-}
-
-.signupButton {
-
-
-
 }
 
 
+.dashboard{
+  height: 97%;
+  width: 99%;
+  background-color:#1e2833;
+  transform:translate(-50%, -50%);
+  position:absolute;
+  top:50%;
+  left:50%;
+  color:#fff;
+  box-shadow:3px 3px 4px rgba(0,0,0,0.2);
+}
+
+hr.solid {
+  border-top: 2px solid black;
+}
+
+.separator {
+  margin-top: 65px;
+  margin-left: 10px;
+  height: 100%;
+}
 
 
 // X-Small devices (portrait phones, less than 576px)
