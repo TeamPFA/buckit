@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Button, Form, Container, Image, Row, Column, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import logo from '../img/buckitimg.png'
 
 const Login = () => {
     const [usernameInput, setUsername] = useState('');
@@ -27,6 +28,7 @@ const Login = () => {
     return (
         <Container fluid className="login">
             <div className="loginCard">
+            <Image src={logo} fluid />
                 <Form onSubmit={handleSubmit}>
                     <Form.Group className="mb-3" controlId="formBasicUsername">
                         <Form.Label>Username</Form.Label>

@@ -6,10 +6,10 @@ import axios from 'axios';
 
 import Dashboard from '../components/Dashboard.jsx';
 
-const HomeContainer = () => {
+const HomeContainer = (props) => {
     
     return (
-        <Dashboard />
+        <Dashboard userName={props.location.state.username}/>
     )
 }
 

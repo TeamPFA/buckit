@@ -7,13 +7,14 @@ import axios from 'axios';
 
 import Separator from './Separator';
 
-const Dashboard = () => {
+const Dashboard = (props) => {
     const [showBuckit, setShowBuckit] = useState(false);
     const [titleInput, setTitleInput] = useState('');
     const [textInput, setTextInput] = useState('');
     const [urlInput, setUrlInput] = useState('');
     const [ratingInput, setRatingInput] = useState("0");
     const Sep = [] ;
+    
     
 
     const handleClose = () => setShowBuckit(false);
@@ -22,16 +23,14 @@ const Dashboard = () => {
     // useEffect to send GET request to /api/home to render and load all buckit cards
 
     useEffect(() => {
-        axios.get('/api/home').then((res) => res.map(<Separator titleInput={el.titleInput} textInput={el.textInput} urlInput={el.urlInput} ratingInput={el.ratingInput} />))
+        axios.get(`/api/home/${props.username}`).then((res) => res.map(<Separator titleInput={el.titleInput} textInput={el.textInput} urlInput={el.urlInput} ratingInput={el.ratingInput} />))
         .catch((err) => console.error('ERR: ', err));
     })
 
     const fetchData = () => {
-        
-        const userID = uuidv4();
+
         axios
-            .post('/api/home', {
-                userID: userID,
+            .post('/api/addBuckit', {
                 title: titleInput,
                 text: textInput,
                 url: urlInput,
