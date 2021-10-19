@@ -3,26 +3,22 @@ import React, { useState } from 'react';
 import { Button, Form, Container, Image } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-
-
-const { v4: uuidv4 } = require('uuid');
+import { v4 as uuidv4 } from 'uuid';
 
 const Signup = () => {
   const [usernameInput, setUsername] = useState('');
   const [passwordInput, setPassword] = useState('');
 
   const fetchData = () => {
-    const userID = uuidv4()
     axios
       .post('/api/signup', {
-        userID: userID,
+        userId: uuidv4(),
         username: usernameInput,
         password: passwordInput,
-        })
-      .then((res) => window.location = '/home')
-      .catch((err) => console.error('ERR: ', err));
+      })
+      .then(res => window.location = `api/home/${usernameInput}`)
+      .catch(err => console.error('ERR: ', err));
   };
-
 
   const handleSubmit = (event) => {
     event.preventDefault();

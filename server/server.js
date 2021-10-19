@@ -5,7 +5,7 @@ const app = express();
 
 const PORT = process.env.PORT || 3000;
 
-// Required middlewares
+// Standard middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/public'));
@@ -23,12 +23,3 @@ app.use((err, req, res, next) => res.status(500).json(err));
 app.listen(PORT, () => console.log(`Server is running on localhost:${PORT}`));;
 
 module.exports = app;
-
-
-/*
-* ! sd
-* ? ?asda
-* ?
-* ! asfafa
-* TODO: 
-*/
