@@ -4,10 +4,10 @@ import { BrowserRouter as Router, Route, Switch, NavLink, Link } from 'react-rou
 
 import Buckit from './Buckit';
 
-const Separator = () => {
+const Separator = (props) => {
   return (
     <div className="separator">
-        <Buckit />
+        <Buckit titleInput={props.titleInput} textInput={props.textInput} urlInput={props.urlInput} ratingInput={props.ratingInput} />
     </div>
   )
 }
