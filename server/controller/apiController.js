@@ -4,8 +4,15 @@ const db = require('../models/buckitModels.js');
 
 const apiController = {};
 
+/*
+instead of having the middleware function in controller send data back,
+we need to store the relevant data in our res.locals, and pass it 
+down the middleware chain by invoking next(). The final middleware in the router
+is then responsible for sending the data back to the front-end 
+*/
+
 apiController.createUser = (req, res, next) => {
-  const { userId, username, password } = req.body;
+  const { userId, username, password } = req.body; 
 
   const getUser = `SELECT * FROM users WHERE username='${username}';`;
 
@@ -41,6 +48,7 @@ apiController.createUser = (req, res, next) => {
 // We would essentially want one buckit_list table per user
   // This requires us to join all entries in buckit_list table with the username in users db with req.body.username
 
+  //dependent on user login
 apiController.getBuckitList = (req, res, next) => {
   const { username } = req.params;
 
@@ -48,12 +56,14 @@ apiController.getBuckitList = (req, res, next) => {
 
   db.query(getUserId)
     .then(data => {
+      console.log('DATA********', data.rows);
       const userIdData = [...data.rows];
-      const userId = userIdData[0]['user_id'];
+      const userId = userIdData[0].user_id;
+      console.log('user_id********', userId);
       return userId;
     })
-    .then(userId => {
-      const getBuckits = `SELECT * FROM buckits WHERE user_id='${userId}';`;
+    .then(user_id => {
+      const getBuckits = `SELECT * FROM buckits WHERE user_id='${user_id}';`;
 
       db.query(getBuckits)
         .then(data => {
@@ -73,18 +83,22 @@ apiController.getBuckitList = (req, res, next) => {
 };
 
 
+//works
 apiController.createBuckit = (req, res, next) => {
   const buckItId = uuidv4();
-
-  const { title, description, url, rating, userId } = req.body;
-
+  console.log('buckit received')
+  console.log('requestbody*********',req.body)
+  const { title, description, url, rating, user_id } = req.body;
+// this query might need to be re-written
   const addBuckit =  `INSERT INTO buckits (buckit_id, title, description, url, rating, user_id) \
-    VALUES ('${buckItId}', '${title}', '${description}', '${url}', '${rating}', '${userId}');`;
+    VALUES ('${buckItId}', '${title}', '${description}', '${url}', '${rating}', '${user_id}');`;
 
   db.query(addBuckit)
     .then(data => {
-      // console.log('newBuckit data: ', datda);
-      return res.status(200).json(data); 
+      console.log('newBuckit data: ', data);
+      console.log(req.body);
+      res.locals.body = req.body
+      return res.status(200).json(res.locals.body); 
     })
     .catch((err) => {
       console.log('addBuckit error: ', err);

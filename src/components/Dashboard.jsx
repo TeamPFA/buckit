@@ -29,6 +29,7 @@ const Dashboard = (props) => {
 
     const fetchData = () => {
 
+        //post request to add a buckit item  to the database
         axios
             .post('/api/addBuckit', {
                 title: titleInput,
@@ -58,6 +59,7 @@ const Dashboard = (props) => {
 
 
     return (
+        //Bootstrap(?) Navbar
         <Container fluid className="dashboard border rounded border-dark">
             <Navbar collapseOnSelect className="fixed-top" bg="dark" variant="dark">
                 <Container>
@@ -98,7 +100,7 @@ const Dashboard = (props) => {
                             <Col>
                                 <Form.Select onSelect={(e) => setRatingInput(e.target.value)}>
                                     <option value="0">Rating</option>
-                                    <option value="3">⭐⭐⭐</option>
+                                    <option value="3">⭐⭐⭐</option> 
                                     <option value="2">⭐⭐</option>
                                     <option value="1">⭐</option>
                                 </Form.Select>
