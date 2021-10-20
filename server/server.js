@@ -1,5 +1,6 @@
 const path = require('path');
 const express = require('express');
+const apiRouter = require('./routes/api.js');
 
 const app = express();
 
@@ -11,7 +12,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/public'));
 
 // Routes to api router 
-const apiRouter = require('./routes/api.js');
 app.use('/api', apiRouter); 
 
 // Local error handler
