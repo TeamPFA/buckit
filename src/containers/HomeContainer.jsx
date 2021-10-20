@@ -5,7 +5,7 @@ import { Button, Form, Container, Image, Row, Column, Col } from 'react-bootstra
 import axios from 'axios';
 
 import Dashboard from '../components/Dashboard.jsx';
-
+//WHERE ARE THE PROPS COMING FROM WHAT THE FUCK
 const HomeContainer = (props) => {
     
     return (

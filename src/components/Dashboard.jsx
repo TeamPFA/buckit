@@ -13,21 +13,22 @@ const Dashboard = (props) => {
     const [textInput, setTextInput] = useState('');
     const [urlInput, setUrlInput] = useState('');
     const [ratingInput, setRatingInput] = useState("0");
-    const Sep = [] ;
+    const [separator, setSeparator] = useState([]);
     
     const handleClose = () => setShowBuckit(false);
     const handleShow = () => setShowBuckit(true);
 
     // useEffect to send GET request to /api/home to render and load all buckit cards
-
+    //you can give the useEffect a dependency, like shown on line 31
     useEffect(() => {
         axios.get(`/api/home/${props.userName}`).then((res) => {
             console.log('response', res);
-            res.data.map( el => {Sep.push(<Separator titleInput={el.title} textInput={el.description} urlInput={el.url} ratingInput={el.rating} />)})
-            console.log(Sep)
+            const newSeparator = res.data.map( el => <Separator titleInput={el.title} textInput={el.description} urlInput={el.url} ratingInput={el.rating} />);
+            setSeparator(newSeparator);
+            console.log('this is our new separator or something:', newSeparator);
         })
         .catch((err) => console.error('ERR: ', err));
-    })
+    }, []);
 
     const fetchData = () => {
 
@@ -76,7 +77,7 @@ const Dashboard = (props) => {
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
-            {Sep}
+            <div className = "Container">{separator}</div>
 
             {/* {buckitList} */}
 

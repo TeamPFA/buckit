@@ -16,6 +16,7 @@ const Signup = () => {
         username: usernameInput,
         password: passwordInput,
       })
+      //this is a really weird line under for line 20. wtf.
       .then(res => window.location = `/home`)
       .catch(err => console.error('ERR: ', err));
   };
