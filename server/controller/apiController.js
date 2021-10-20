@@ -14,6 +14,7 @@ is then responsible for sending the data back to the front-end
 apiController.createUser = (req, res, next) => {
   const { userId, username, password } = req.body; 
 
+  // SELECT buckits.*, users.username as username FROM buckits LEFT OUTER JOIN users ON users.user_id = buckits.user_id
   const getUser = `SELECT * FROM users WHERE username='${username}';`;
 
   db.query(getUser)
@@ -51,12 +52,28 @@ apiController.createUser = (req, res, next) => {
   //dependent on user login
 apiController.getBuckitList = (req, res, next) => {
   const { username } = req.params;
-
+  console.log('request params*******line55', req.params);
   const getUserId = `SELECT * FROM users WHERE username='${username}';`;
+  
+  const getUserBuckits = `SELECT buckits.*, users.username as username FROM buckits LEFT OUTER JOIN users ON users.user_id = buckits.user_id WHERE users.username = '${username}'`
+  
+  db.query(getUserBuckits)
+    .then(data => {
+      res.locals.buckits = data.rows;
+      return next();
+    })
+    .catch(err => {
+      console.log(err);
+      return next(err);
+    })
 
+  
+
+  /*
+  this is the old query that the previous group used.  we refactored it above^
   db.query(getUserId)
     .then(data => {
-      console.log('DATA********', data.rows);
+      console.log('DATA******** line 59', data.rows);
       const userIdData = [...data.rows];
       const userId = userIdData[0].user_id;
       console.log('user_id********', userId);
@@ -68,7 +85,9 @@ apiController.getBuckitList = (req, res, next) => {
       db.query(getBuckits)
         .then(data => {
           const buckitsData = [...data.rows];
-          // console.log('getBuckits data: ', buckitsData);
+          console.log('getBuckits data: ', buckitsData);
+          res.locals.buckits = buckitsData;
+          // return next();
           return res.status(200).json(buckitsData);
         })
         .catch(err => {
@@ -80,6 +99,7 @@ apiController.getBuckitList = (req, res, next) => {
       return next(err);
     });
   });
+  */
 };
 
 
@@ -97,8 +117,8 @@ apiController.createBuckit = (req, res, next) => {
     .then(data => {
       console.log('newBuckit data: ', data);
       console.log(req.body);
-      res.locals.body = req.body
-      return res.status(200).json(res.locals.body); 
+      res.locals.body = req.body;
+      return next(); 
     })
     .catch((err) => {
       console.log('addBuckit error: ', err);

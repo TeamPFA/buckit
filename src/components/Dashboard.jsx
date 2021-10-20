@@ -15,15 +15,17 @@ const Dashboard = (props) => {
     const [ratingInput, setRatingInput] = useState("0");
     const Sep = [] ;
     
-    
-
     const handleClose = () => setShowBuckit(false);
     const handleShow = () => setShowBuckit(true);
 
     // useEffect to send GET request to /api/home to render and load all buckit cards
 
     useEffect(() => {
-        axios.get(`/api/home/${props.username}`).then((res) => res.map(<Separator titleInput={el.titleInput} textInput={el.textInput} urlInput={el.urlInput} ratingInput={el.ratingInput} />))
+        axios.get(`/api/home/${props.userName}`).then((res) => {
+            console.log('response', res);
+            res.data.map( el => {Sep.push(<Separator titleInput={el.title} textInput={el.description} urlInput={el.url} ratingInput={el.rating} />)})
+            console.log(Sep)
+        })
         .catch((err) => console.error('ERR: ', err));
     })
 
@@ -37,8 +39,8 @@ const Dashboard = (props) => {
                 url: urlInput,
                 rating: ratingInput,
             })
-            .then((res) => { res.map((el) => <Separator titleInput={el.titleInput} textInput={el.textInput} urlInput={el.urlInput} ratingInput={el.ratingInput} />);
-            })
+            .then((res) =>  { res.map( el => {<Separator titleInput={el.title} textInput={el.description} urlInput={el.url} ratingInput={el.rating} />})
+        })
             .catch((err) => console.error('ERR: ', err));
     };
 

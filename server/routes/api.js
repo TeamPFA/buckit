@@ -7,11 +7,18 @@ const router = express.Router();
 const apiController = require('../controller/apiController.js')
 
 //endpoint for when a user logs in
-router.get('/home/:username', apiController.getBuckitList);
+router.get('/home/:username', apiController.getBuckitList,  
+    (req, res) => {
+        // console.log('res.locals******', res.locals.buckits);
+        return res.status(202).json(res.locals.buckits);
+    }
+);
 
 router.post('/signup', apiController.createUser);
 
-router.post('/addBuckit', apiController.createBuckit);
+router.post('/addBuckit', apiController.createBuckit, (req, res) => {
+    return res.json(res.locals.body);
+});
 
 
 module.exports = router;

@@ -9,14 +9,14 @@ const Buckit = (props) => {
         <Card variant="Light" border="primary" style={{ width: '18rem' }}>
             <div className="d-flex justify-content-end">{props.ratingInput}</div>
             <Card.Body>
-            <Card.Title>{props.titleInput} </Card.Title>
+                <Card.Title>{props.titleInput} </Card.Title>
                 <hr className="solid" />
                 <Card.Text>{props.urlInput}</Card.Text>
-                </Card.Body>
-                <Card.Body>
-                    <Card.Link href={props.urlInput}>{props.urlInput}</Card.Link>
-                     </Card.Body>
-                     </Card>
+            </Card.Body>
+            <Card.Body>
+                <Card.Link href={props.urlInput}>{props.urlInput}</Card.Link>
+            </Card.Body>
+        </Card>
                     
     );
 };
