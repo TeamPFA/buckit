@@ -9,6 +9,7 @@ const Login = () => {
     const [usernameInput, setUsername] = useState('');
     const [passwordInput, setPassword] = useState('');
 
+    //currently, there is no route to handle the /api/login endpoint
     const fetchData = () => {
         axios
             .post('/api/login', {
